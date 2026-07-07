@@ -469,3 +469,266 @@ Rather than forcing the data to follow a normal distribution, the workflow adopt
 
 This decision became the foundation of the anomaly detection methodology.
 
+### 5. Comparison of Outlier Detection Methods
+
+One of the principal objectives of this project was to identify a statistical method capable of detecting anomalous electrical measurements while preserving physically meaningful events.
+
+Three robust outlier detection techniques were evaluated:
+
+- **Interquartile Range (IQR)**
+- **Median Absolute Deviation (MAD)**
+- **Percentile-based thresholds**
+
+Each method was analyzed according to the statistical characteristics observed in the electrical current distributions.
+
+The comparison demonstrated that percentile-based thresholds produced the most reliable results for the analyzed datasets. Since the current measurements exhibited positive skewness, percentile limits adapted naturally to the empirical distribution without imposing Gaussian assumptions.
+
+Instead of selecting an anomaly detection method arbitrarily, the statistical properties of the data determined the final methodology.
+
+### 6. Detection and Interpretation of Outliers
+
+The detected outliers were not treated simply as erroneous observations.
+
+In electrical monitoring systems, extreme values may represent:
+
+- Demand peaks.
+- Equipment startup.
+- Electrical transients.
+- Short circuits.
+- Power outages.
+- Sensor failures.
+- Communication interruptions.
+
+For this reason, every detected anomaly was preserved inside an independent report instead of being permanently removed from the dataset.
+
+This design allows future engineering analyses to distinguish between statistical anomalies and physically meaningful electrical events.
+
+### 7. Signal Reconstruction
+
+Once anomalous observations had been identified, they were temporarily replaced by missing values (`NaN`).
+
+The resulting gaps were reconstructed using linear interpolation.
+
+This procedure generated a cleaned version of the signal while preserving its chronological structure and reducing the influence of extreme observations on later statistical calculations.
+
+Importantly, the interpolation process was applied only to the statistical version of the signal.
+
+The original measurements and the complete outlier registry remained unchanged for engineering interpretation.
+
+### 8. Statistical Contribution
+
+The main statistical contribution of this project lies in demonstrating that anomaly detection should not rely on predefined assumptions regarding the distribution of the data.
+
+Instead, the methodology follows the sequence:
+
+1. Explore the empirical distribution.
+2. Characterize the statistical behavior.
+3. Compare robust detection methods.
+4. Select the method most consistent with the observed data.
+5. Detect anomalous observations.
+6. Preserve engineering information.
+7. Reconstruct the statistical signal.
+
+This data-driven strategy provides a more reliable framework for analyzing real electrical measurements than applying a fixed statistical model to every dataset.
+
+---
+
+# Results and Insights
+
+The proposed methodology successfully transformed large volumes of raw electrical measurements into statistically meaningful information.
+
+Beyond generating descriptive statistics, the workflow revealed consumption patterns, identified anomalous events and provided quantitative evidence capable of supporting institutional energy-efficiency initiatives.
+
+### 1. Electrical Current Distributions
+
+Histogram analysis revealed that the current measurements (`Ia`, `Ib`, `Ic` and `In`) did not follow symmetric distributions.
+
+Instead, the observations exhibited positive skewness, where most measurements remained concentrated around typical operating conditions while relatively few observations formed a long right-hand tail.
+
+This result demonstrated that classical Gaussian assumptions were insufficient to describe the statistical behavior of the analyzed electrical signals.
+
+Consequently, robust statistical methods became necessary.
+
+### 2. Selection of the Outlier Detection Strategy
+
+The comparison between IQR, MAD and percentile-based thresholds showed that percentile limits provided the best representation of the empirical distributions.
+
+Because the analyzed signals were asymmetric, percentile thresholds adapted naturally to the observed behavior without requiring normally distributed data.
+
+This represents one of the principal statistical conclusions of the project:
+
+> The anomaly detection method should be selected according to the observed distribution of the measurements rather than assuming a predefined statistical model.
+
+### 3. Identification of Anomalous Events
+
+The proposed methodology successfully identified measurements exceeding the statistical thresholds defined for each hourly segment.
+
+Rather than deleting these observations, every anomaly was stored independently for subsequent inspection.
+
+These events may correspond to:
+
+- Electrical demand peaks.
+- Equipment activation.
+- Electrical disturbances.
+- Communication failures.
+- Measurement errors.
+- Operational anomalies.
+
+Consequently, the methodology preserves engineering information while simultaneously generating a statistically cleaned dataset.
+
+### 4. Daily Consumption Behavior
+
+The analyzed measurements revealed a characteristic daily consumption pattern.
+
+Current values remained relatively high during nighttime and early morning hours, decreased throughout normal daytime operation and increased again during the evening.
+
+This behavior suggests that part of the electrical consumption originates from systems operating independently of regular academic activities, including automatic equipment and continuously operating electrical infrastructure.
+
+These observations provide valuable information for future energy-efficiency studies.
+
+### 5. Operational Interpretation
+
+One particularly relevant observation involved periods of reduced academic activity.
+
+Despite lower building occupancy during vacation periods or inactive academic schedules, certain facilities continued exhibiting significant electrical consumption.
+
+This behavior may indicate opportunities for:
+
+- Reviewing equipment schedules.
+- Optimizing automatic systems.
+- Reducing unnecessary electricity consumption.
+- Lowering operational costs.
+- Supporting sustainability initiatives.
+
+The statistical methodology therefore provides quantitative evidence capable of supporting institutional decision-making.
+
+### 6. Technical Contribution
+
+From a technical perspective, the project integrates several disciplines into a single analytical framework.
+
+The complete workflow combines:
+
+- Remote data acquisition.
+- Metadata organization.
+- SQL database management.
+- Python preprocessing.
+- Exploratory Data Analysis.
+- Probability distribution characterization.
+- Robust outlier detection.
+- Signal reconstruction.
+- Statistical visualization.
+- Engineering interpretation.
+
+Rather than representing an isolated statistical exercise, the repository documents a complete analytical pipeline for processing real electrical measurements.
+
+### 7. Main Findings
+
+The principal findings of this project are summarized below:
+
+- Real electrical measurements exhibit asymmetric statistical behavior.
+- Current distributions are positively skewed.
+- Classical Gaussian assumptions are insufficient for the analyzed datasets.
+- Percentile-based thresholds outperform IQR and MAD for the analyzed case study.
+- Outliers may represent meaningful engineering events rather than statistical errors.
+- Separating anomaly detection from signal reconstruction preserves both statistical and physical information.
+- SQL database organization significantly improves scalability and long-term analysis.
+- The proposed workflow supports future applications in automated monitoring and sustainability analysis.
+
+### 8. Final Remarks
+
+The most significant contribution of this project is methodological.
+
+Instead of imposing statistical assumptions on the data, the workflow allows the empirical distribution to determine the analytical strategy.
+
+This philosophy results in a more robust, interpretable and transferable methodology for analyzing electrical monitoring systems based on real institutional measurements.
+
+---
+
+# Project Architecture
+
+The project follows an end-to-end analytical architecture integrating remote data acquisition, database organization, statistical analysis and visualization.
+
+```text
+                    Institutional Monitoring System
+                                   │
+                                   ▼
+                           Remote NAS Storage
+                                   │
+                                   ▼
+                          Electrical CSV Files
+                                   │
+                                   ▼
+                     Metadata & Substation Catalog
+                                   │
+                                   ▼
+                    SQL Database Organization
+                                   │
+                                   ▼
+                        Python Data Processing
+                                   │
+               ┌───────────────────┼───────────────────┐
+               ▼                   ▼                   ▼
+      Exploratory Data      Statistical Analysis   Visualization
+           Analysis                                 & Reporting
+               │
+               ▼
+    Probability Distribution Analysis
+               │
+               ▼
+     Robust Outlier Detection
+               │
+               ▼
+      Signal Reconstruction
+               │
+               ▼
+      Energy-Efficiency Insights
+```
+
+The architecture integrates SQL, Python and statistical reasoning into a unified workflow capable of transforming raw electrical measurements into actionable engineering information.
+
+---
+
+# Technologies Used
+
+| Category | Technologies |
+|----------|--------------|
+| Programming Language | Python |
+| Database | SQL, MariaDB |
+| Data Analysis | Pandas, NumPy |
+| Statistical Analysis | SciPy |
+| Visualization | Matplotlib |
+| Data Storage | NAS |
+| Remote Access | SFTP |
+| Reporting | Excel |
+| Version Control | Git, GitHub |
+
+---
+
+# Confidentiality Statement
+
+This repository documents the methodology developed during an academic project based on real institutional electrical measurements collected at the Universidad Nacional Autónoma de México (UNAM).
+
+Due to confidentiality agreements, the original datasets, SQL databases, server credentials, network infrastructure and institutional resources are **not included** in this repository.
+
+Only the analytical methodology, software architecture and statistical workflow are presented. All examples have been anonymized while preserving the technical approach developed during the project.
+
+---
+
+# References
+
+- Pandas Development Team. *Pandas Documentation*.
+- NumPy Developers. *NumPy Documentation*.
+- Matplotlib Development Team. *Matplotlib Documentation*.
+- SciPy Development Team. *SciPy Documentation*.
+- Montgomery, D. C., & Runger, G. C. *Applied Statistics and Probability for Engineers*.
+- Tukey, J. W. *Exploratory Data Analysis*.
+- NIST/SEMATECH e-Handbook of Statistical Methods.
+
+---
+
+# License
+
+This repository is released under the MIT License.
+
+See the `LICENSE` file for additional information.
+
