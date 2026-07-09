@@ -7,6 +7,10 @@
 <img src="figures/Distribucion de la corriente Ia.png" width="900">
 </p>
 
+<p align="center">
+<img src="figures/Corriente Ia sin outliers.png" width="900">
+</p>
+
 ---
 
 ## Overview
