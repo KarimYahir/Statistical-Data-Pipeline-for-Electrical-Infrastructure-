@@ -5,7 +5,7 @@
 ## Workflow
 
 <p align="center">
-<img src="figures/workflow.png" width="900">
+<img src="figures/Distribucion de la corriente Ia.png" width="900">
 </p>
 
 ---
