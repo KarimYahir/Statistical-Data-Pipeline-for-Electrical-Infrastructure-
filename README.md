@@ -2,7 +2,6 @@
 
 > An end-to-end statistical pipeline for analyzing real electrical measurements using SQL, Python and robust statistical techniques to support energy-efficiency decision making.
 
-## Workflow
 
 <p align="center">
 <img src="figures/Distribucion de la corriente Ia.png" width="900">
